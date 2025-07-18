@@ -5,6 +5,7 @@ public class Customer {
     private String name;
     private String email;
     private int phoneNumber;
+    private String accountNumber;
 
 //    public Customer(String customerId, String name, String email, Double phoneNumber) {
 //        this.customerId = customerId;
@@ -44,5 +45,13 @@ public class Customer {
 
     public void setPhoneNumber(int phoneNumber) {
         this.phoneNumber = phoneNumber;
+    }
+
+    public String getAccountNumber() {
+        return accountNumber;
+    }
+
+    public void setAccountNumber(String accountNumber) {
+        this.accountNumber = accountNumber;
     }
 }
