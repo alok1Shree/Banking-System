@@ -1,16 +1,19 @@
 package org.banking;
 
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.Scanner;
 
 //TIP To <b>Run</b> code, press <shortcut actionId="Run"/> or
 // click the <icon src="AllIcons.Actions.Execute"/> icon in the gutter.
 public class StartBankingApplication {
-    public static void main(String[] args) {
+    public static void main(String[] args) throws SQLException {
         Util util = new Util();
         Customer customer = new Customer();
         Bank bank = new Bank();
         SavingsAccount savingsAccount = new SavingsAccount();
         CurrentAccount currentAccount = new CurrentAccount();
+        Connection dbConnection = DBConnection.getConnection();
         Scanner scan = new Scanner(System.in);
         System.out.println("Choose Your Operations");
         System.out.println("1. Open Account");
@@ -27,9 +30,10 @@ public class StartBankingApplication {
                 System.out.println("Enter your email");
                 String email = scan.nextLine();
                 System.out.println("Enter your PhoneNumber");
-                int phoneNumber = scan.nextInt();
+                long phoneNumber = scan.nextLong();
                 System.out.println("Enter Amount");
                 double amount = scan.nextInt();
+
 
                 //Setting Customer details for openings account
                 customer.setCustomerId(util.randomId(accountType));
@@ -37,6 +41,7 @@ public class StartBankingApplication {
                 customer.setEmail(email);
                 customer.setPhoneNumber(phoneNumber);
                 customer.setAccountNumber(util.accountNumber(accountType));
+                customer.setAccountType(accountType);
                 savingsAccount.setBalance(amount);
 
                 //Displaying Customer Account Details:
@@ -47,6 +52,17 @@ public class StartBankingApplication {
                 System.out.println("Phone Number : " + customer.getPhoneNumber());
                 System.out.println("Account Number : " + customer.getAccountNumber());
                 System.out.println("Account Balance : " + savingsAccount.getBalance());
+
+
+                //DBConnection to save data
+                CustomerDAO customerDAO = new CustomerDAO();
+                boolean success = customerDAO.saveCustomer(customer);
+                if(success){
+                    System.out.println("Customer saved successfully.");
+                }
+                else{
+                    System.out.println("Failed to save Customer.");
+                }
 
                 break;
 

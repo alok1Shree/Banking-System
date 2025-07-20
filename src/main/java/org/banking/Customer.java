@@ -1,11 +1,12 @@
 package org.banking;
 
-public class Customer {
+public class Customer{
     private String customerId;
     private String name;
     private String email;
-    private int phoneNumber;
+    private long phoneNumber;
     private String accountNumber;
+    private String accountType;
 
 //    public Customer(String customerId, String name, String email, Double phoneNumber) {
 //        this.customerId = customerId;
@@ -39,11 +40,11 @@ public class Customer {
         this.email = email;
     }
 
-    public int getPhoneNumber() {
+    public long getPhoneNumber() {
         return phoneNumber;
     }
 
-    public void setPhoneNumber(int phoneNumber) {
+    public void setPhoneNumber(long phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
 
@@ -53,5 +54,13 @@ public class Customer {
 
     public void setAccountNumber(String accountNumber) {
         this.accountNumber = accountNumber;
+    }
+
+    public String getAccountType() {
+        return accountType;
+    }
+
+    public void setAccountType(String accountType) {
+        this.accountType = accountType;
     }
 }
